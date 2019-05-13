@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:200,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+ 
+  
+
+
+  <style type="text/css">
+  input, textarea {width:200px;margin:4px;padding:4px;border:#000000 1px solid;background:none;box-sizing:border-box;overflow:auto}
+  </style>
+  <script type="text/javascript" src="qrcode.js"></script>
+
+  
+
+  <style>
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+      width:65%;
+      margin: auto;
+      
+    }
+    </style>
+
+
+<script src="qrcode.js"></script>
+
+<style>
+    img{
+        width: 80%;
+    }
+    div img{
+        width: 50%;
+    }
+</style>
+
+
+</head>
+
+<body>
+        
+
+<h2><center>Selecciona tus Postres</center></h2>
+
+          
+          <script>
+            window.onload = function () {
+                // Variables
+                
+                let baseDeDatos = [
+                {
+                        id: 1,
+                        nombre: 'Brazo de reina',
+                        precio: 1000,
+                        img : "images/braaaaa.jpg",
+                        codigo : 13245
+                    },
+                    {
+                        id: 2,
+                        nombre: 'frappuccino de chocolate',
+                        precio: 1200,
+                        img : "images/frappuccinochocolate.jpg",
+                        codigo : 13246
+                    },
+                    {
+                        id: 3,
+                        nombre: 'Leche nevada',
+                        precio: 2100,
+                        img : "images/leche_nevada.jpg",
+                        codigo : 13247
+                    },
+                    {
+                        id: 4,
+                        nombre: 'Leche asada',
+                        precio: 1600,
+                        img : "images/leche_asada.jpg",
+                        codigo : 13248
+                    },
+                    {
+                        id: 5,
+                        nombre: 'mousse de limon',
+                        precio: 1600,
+                        img : "images/moussedelimon.jpg",
+                        codigo : 13249
+                    },
+                    {
+                        id: 6,
+                        nombre: 'helados de sandia',
+                        precio: 1600,
+                        img : "images/heladosdesandia.jpg",
+                        codigo : 13210
+                
+                    },
+                    {
+                        id: 7,
+                        nombre: 'Tartaleta de Frutas',
+                        precio: 1600,
+                        img : "images/tartaleta_de_frutas.jpg",
+                        codigo : 13211
+                    },
+                    {
+                        id: 8,
+                        nombre: 'Pancakes',
+                        precio: 1600,
+                        img: "images/pancakes.jpg",
+                        codigo : 13212
+                    },
+                    {
+                        id: 9,
+                        nombre: 'Chilenitos',
+                        precio: 1600,
+                        img : "images/leche_nevada.jpg",
+                        codigo : 13213
+                    },
+                    {
+                        id: 10,
+                        nombre: 'Cheesecake',
+                        precio: 1600,
+                        img: "images/cheesecake_de_pascua.jpg",
+                        codigo : 13214
+                    },{
+                        id: 11,
+                        nombre: 'Picaron',
+                        precio: 1600,
+                        img : "images/c11v60x60.jpg",
+                        codigo : 13215
+                    },{
+                        id: 12,
+                        nombre: 'Picaron2',
+                        precio: 1600,
+                        img  : "images/c11v60x60.jpg",
+                        codigo : 13216
+                        
+                    }
+    
+                ]
+                let $items = document.querySelector('#items');
+                let carrito = [];
+                let total = 0;
+
+                let codigos =0;
+               
+
+                let $carrito = document.querySelector('#carrito');
+                let $total = document.querySelector('#total');
+
+                let $codigos = document.querySelector('#codigos');
+
+
+                // Funciones
+                function renderItems () {
+                    for (let info of baseDeDatos) {
+                        // Estructura
+                        let miNodo = document.createElement('div');
+                        miNodo.classList.add('card', 'col-sm-4');
+                        // Body
+                        let miNodoCardBody = document.createElement('div');
+                        miNodoCardBody.classList.add('card-body');
+                        // Titulo
+                        let miNodoTitle = document.createElement('h5');
+                        miNodoTitle.classList.add('card-title');
+                        miNodoTitle.textContent = info['nombre'];
+                    
+                        // Precio
+                        let miNodoPrecio = document.createElement('p');
+                        miNodoPrecio.classList.add('card-text');
+                        miNodoPrecio.textContent = '$' + info ['precio'];
+                        // Boton 
+                        let miNodoBoton = document.createElement('button');
+                         miNodoBoton.classList.add('btn', 'btn-primary');
+                         miNodoBoton.textContent = 'AGREGAR';
+                         miNodoBoton.setAttribute('marcador', info['id']);
+                         miNodoBoton.addEventListener('click', anyadirCarrito);
+                         
+                        //imagen
+                        let miNodoimagen = document.createElement('img');
+                         miNodoimagen.classList.add('img');
+                         
+                         miNodoimagen.setAttribute("src", info['img']);
+                  
+                          // codigo
+                        let miNodocodigo = document.createElement('p');
+                        miNodocodigo.classList.add('card-text');
+                        miNodocodigo.textContent = info ['codigo'];
+
+
+
+
+                        // Insertamoss
+                        miNodoCardBody.appendChild(miNodoimagen);
+                        miNodoCardBody.appendChild(miNodoTitle);
+                        miNodoCardBody.appendChild(miNodoPrecio);
+                        miNodoCardBody.appendChild(miNodoBoton);
+                        miNodoCardBody.appendChild(miNodocodigo);
+
+                        miNodo.appendChild(miNodoCardBody);
+                        $items.appendChild(miNodo);
+                    }
+                }
+                function anyadirCarrito () {
+                    // Anyadimos el Nodo a nuestro carrito
+                    carrito.push(this.getAttribute('marcador'))
+                    // Calculo el total
+                    calcularTotal();
+                    // Renderizamos el carrito 
+                    renderizarCarrito();
+    
+                }
+    
+                function renderizarCarrito () {
+                    // Vaciamos todo el html
+                    $carrito.textContent = '';
+                    // Generamos los Nodos a partir de carrito
+                    carrito.forEach(function (item, indice) {
+                        // Obtenemos el item que necesitamos de la variable base de datos
+                        let miItem = baseDeDatos.filter(function(itemBaseDatos) {
+                            return itemBaseDatos['id'] == item;
+                        });
+                        // Creamos el nodo del item del carrito
+                        let miNodo = document.createElement('li');
+                        miNodo.classList.add('list-group-item', 'text-right');
+                        
+                        
+                        miNodo.textContent = `${miItem[0]['nombre']} - $ ${miItem[0]['precio']}`;
+                       // buscar 
+                        
+
+
+                        // Boton de borrar
+                        let miBoton = document.createElement('button');
+                        miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                        miBoton.textContent = 'X';
+                        miBoton.setAttribute('posicion', indice);
+                        miBoton.addEventListener('click', borrarItemCarrito);
+                        
+                        // Mezclamos nodos
+                        miNodo.appendChild(miBoton);
+                        $carrito.appendChild(miNodo);
+                    })
+                }
+    
+                function borrarItemCarrito () {
+                    // Obtenemos la posicion que hay en el boton pulsado
+                    let posicion = this.getAttribute('posicion');
+                    // Borramos la posicion que nos interesa
+                    carrito.splice(posicion, 1);
+                    // volvemos a renderizar
+                    renderizarCarrito();
+                    // Calculamos de nuevo el precio
+                    calcularTotal();
+                }
+    
+                function calcularTotal () {
+                // Limpiamos precio anterior
+                total = 0;
+                
+                // Recorremos el array del carrito
+                for (let item of carrito) {
+                    // De cada elemento obtenemos su precio
+                    let miItem = baseDeDatos.filter(function(itemBaseDatos) {
+                        return itemBaseDatos['id'] == item;
+                    });
+
+                    total = total + miItem[0]['precio'];
+                
+                }
+
+
+                 //prueba
+
+                  codigos = 0;
+
+                 for (let item of carrito) {
+                    // De cada elemento obtenemos su precio
+                    let miItem = baseDeDatos.filter(function(itemBaseDatos) {
+                        return itemBaseDatos['id'] == item;
+                    });
+
+                    codigos = miItem[0]['id'];miItem[0]['id'];
+                    
+                }
+                  //prueba
+
+                 
+
+
+
+
+
+
+                // Formateamos el total para que solo tenga dos o ningun decimales
+                let totalDosDecimales = total.toFixed(0);
+                // Renderizamos el precio en el HTML
+                $total.textContent = totalDosDecimales;
+
+                // Formateamos el total para que solo tenga dos o ningun decimales
+                let codigosDosDecimales = codigos.toFixed(0);
+                // Renderizamos el precio en el HTML
+                $codigos.textContent = codigosDosDecimales;
+            }
+
+            // Eventos
+
+          // Inicio
+            renderItems()
+        } 
+    
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+<div class="container">
+  <div class="row">
+      <!-- Elementos generados a partir del JSON -->
+      <main id="items" class="col-sm-8 row"></main>
+      <!-- Carrito -->
+      <aside class="col-sm-4">
+          <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCarrito</h2>
+          <!-- Elementos del carrito -->
+          <ul id="carrito" class="list-group"></ul>
+          <hr>
+          <!-- Precio total -->
+          <p class="text-right">Total: $ <span id="total"></span></p>
+          <p class="text-right">codigos:  <span id="codigos"></span></p>
+          
+          
+          <div data-role="content">
+            <form>
+             <form name="form" action="" method="get">
+              <input type="text" name="valortext" rows="1" >
+                
+              <input type="button" value="Generar" onclick="update_qrcode()">
+                
+                </form>
+                
+      
+
+            <div id="qr"></div>
+        </div>          
+
+
+          
+         <p id="items"></p>      
+      </aside>
+  </div>
+</div>
+</body>
+
+</html>
