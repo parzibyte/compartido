@@ -58,6 +58,8 @@
           
           <script>
             window.onload = function () {
+                
+                
                 // Variables
                 
                 let baseDeDatos = [
@@ -161,6 +163,22 @@
 
 
                 // Funciones
+                
+                // Función para generar el código
+                
+                const $botonGenerarQR = document.querySelector("#btnGenerarQR"); // el botón que lo genera
+                
+                $botonGenerarQR.addEventListener("click", () => {
+                  var typeNumber = 4;
+                  var errorCorrectionLevel = 'L';
+                  var qr = qrcode(typeNumber, errorCorrectionLevel);
+                  qr.addData(carrito.join(";")); // Unir el arreglo "carrito"
+                  qr.make();
+                    // Ponerlo en el div con id qr
+                  document.querySelector('#qr').innerHTML = qr.createImgTag();
+                });
+                
+                // Código que ya estaba antes:
                 function renderItems () {
                     for (let info of baseDeDatos) {
                         // Estructura
@@ -354,7 +372,7 @@
              <form name="form" action="" method="get">
               <input type="text" name="valortext" rows="1" >
                 
-              <input type="button" value="Generar" onclick="update_qrcode()">
+              <button id="btnGenerarQR">Generar</button>
                 
                 </form>
                 
